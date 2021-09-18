@@ -76,6 +76,7 @@ class _Ticker:
         res = session.get(f"{self.host}{endpoint}/{symbols}", params=kwargs)
 
         if self._check_status(res.status_code):
+            print(res.json())
             return res.json()
 
     def _check_status(self, status_code: int) -> bool:
@@ -96,7 +97,7 @@ class _Ticker:
         n = max(1, n)
         return (l[i:i + n] for i in range(0, len(l), n))
 
-    def income_statement(self) -> List[Dict]:
+    def income_statement(self, period: str = None) -> List[Dict]:
         """
         Get income statements
 
@@ -120,7 +121,33 @@ class _Ticker:
         - N/A
 
         """
-        return self._get_data("income-statement")
+        return self._get_data("income-statement", period=period)
+
+    def income_statement_ttm(self) -> List[Dict]:
+        """
+        Get income statement trailing twelve months
+
+        Exchanges supported
+
+        - NASDAQ
+        - NYSE (New York Stock Exchange)
+        - XETRA (German Electronic Exchange)
+        - ASX (Australian Stock Exchange)
+        - TSX (Toronto Stock Exchange)
+        - ENX (EuroNext)
+        - NSE (National Stock Exchange of India)
+        - LSE (London Stock Exchange)
+        - MOEX (Moscow Stock Exchange)
+        - HKEX (Hong Kong Stock Exchange)
+        - SIX (Swiss Stock Exchange)
+        - OSE (Oslo Stock Exchange)
+
+        Not Supported.
+
+        - N/A
+
+        """
+        return self._get_data("income-statement-ttm")
 
     def income_statement_growth(self) -> List[Dict]:
         """
@@ -148,7 +175,7 @@ class _Ticker:
         """
         return self._get_data("income-statement-growth")
 
-    def balance_sheet(self) -> List[Dict]:
+    def balance_sheet(self, period: str = None) -> List[Dict]:
         """
         Get balance sheets
 
@@ -174,7 +201,7 @@ class _Ticker:
         # TODO: Add period parameter to financial statements
 
         """
-        return self._get_data("balance-sheet-statement")
+        return self._get_data("balance-sheet-statement", period=period)
 
     def balance_sheet_growth(self) -> List[Dict]:
         """
@@ -202,7 +229,7 @@ class _Ticker:
         """
         return self._get_data("balance-sheet-statement-growth")
 
-    def cash_flow(self) -> List[Dict]:
+    def cash_flow(self, period: str = None) -> List[Dict]:
         """
         Get cash flow statements
 
@@ -226,7 +253,33 @@ class _Ticker:
         - N/A
 
         """
-        return self._get_data("cash-flow-statement")
+        return self._get_data("cash-flow-statement", period=period)
+
+    def cash_flow_ttm(self) -> List[Dict]:
+        """
+        Get cash flow statement trailing twelve months
+
+        Exchanges supported
+
+        - NASDAQ
+        - NYSE (New York Stock Exchange)
+        - XETRA (German Electronic Exchange)
+        - ASX (Australian Stock Exchange)
+        - TSX (Toronto Stock Exchange)
+        - ENX (EuroNext)
+        - NSE (National Stock Exchange of India)
+        - LSE (London Stock Exchange)
+        - MOEX (Moscow Stock Exchange)
+        - HKEX (Hong Kong Stock Exchange)
+        - SIX (Swiss Stock Exchange)
+        - OSE (Oslo Stock Exchange)
+
+        Not Supported.
+
+        - N/A
+
+        """
+        return self._get_data("cash-flow-statement-ttm")
 
     def cash_flow_growth(self) -> List[Dict]:
         """
@@ -536,6 +589,31 @@ class _Ticker:
 
         """
         return self._get_data("key-executives")
+
+    def historical_price(self) -> List[Dict]:
+        """
+        Get historical price data
+
+        Exchanges supported
+
+        - NASDAQ
+        - NYSE (New York Stock Exchange)
+        - XETRA (German Electronic Exchange)
+        - ASX (Australian Stock Exchange)
+        - TSX (Toronto Stock Exchange)
+        - ENX (EuroNext)
+        - NSE (National Stock Exchange of India)
+        - LSE (London Stock Exchange)
+        - MOEX (Moscow Stock Exchange)
+        - HKEX (Hong Kong Stock Exchange)
+        - SIX (Swiss Stock Exchange)
+
+        Not Supported.
+
+        - OSE (Oslo Stock Exchange)
+
+        """
+        return self._get_data("daily-price")
 
 
 class Quantel(object):

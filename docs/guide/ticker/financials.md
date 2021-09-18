@@ -240,6 +240,53 @@
     ...
     ```
 
+### **income_statement_ttm**
+
+=== "Details"
+
+    - *Description*:  Retrieves income statement trailing twelve months
+    - *Return*:  `List[Dict]`
+
+=== "Example"
+
+    ```python
+    from quantel import Quantel
+
+    qt = Quantel(api_key="<your-quantel-api-key>")
+
+    goog = qt.ticker('goog')
+    goog.income_statement_ttm()
+    ```
+
+=== "Data"
+
+    ```python
+    [{
+        "symbol": "GOOG",
+        "reportedCurrency": "USD",
+        "period": "TTM",
+        "revenueTTM": 220265000000,
+        "costOfRevenueTTM": 97527000000,
+        "grossProfitTTM": 122738000000,
+        "researchAndDevelopmentExpensesTTM": 29038000000,
+        "generalAndAdministrativeExpensesTTM": 11701000000,
+        "sellingAndMarketingExpensesTTM": 19337000000,
+        "sellingGeneralAndAdministrativeExpensesTTM": 31038000000,
+        "otherExpensesTTM": 0,
+        "operatingExpensesTTM": 60076000000,
+        "costAndExpensesTTM": 157603000000,
+        "interestExpenseTTM": 253000000,
+        "depreciationAndAmortizationTTM": 12901000000,
+        "ebitdaTTM": 88470000000,
+        "operatingIncomeTTM": 62662000000,
+        "totalOtherIncomeExpensesNetTTM": -12654000000,
+        "incomeBeforeTaxTTM": 75316000000,
+        "incomeTaxExpenseTTM": 12387000000,
+        "netIncomeTTM": 62929000000
+      }]
+    ...
+    ```
+
 ### **income_statement_growth**
 
 === "Details"
@@ -350,6 +397,65 @@
      'salesMaturitiesOfInvestments': 133929000000,
      'stockBasedCompensation': 12991000000,
      'symbol': 'GOOG'},
+    ...
+    ```
+
+### **cash_flow_ttm**
+
+=== "Details"
+
+    - *Description*:  Retrieves cash flow statement trailing twelve months
+    - *Return*:  `List[Dict]`
+
+=== "Example"
+
+    ```python
+    from quantel import Quantel
+
+    qt = Quantel(api_key="<your-quantel-api-key>")
+
+    goog = qt.ticker('goog')
+    goog.cash_flow_ttm()
+    ```
+
+=== "Data"
+
+    ```python
+    [{
+        "symbol": "GOOG",
+        "reportedCurrency": "USD",
+        "period": "TTM",
+        "netIncomeTTM": 62929000000,
+        "depreciationAndAmortizationTTM": 12901000000,
+        "deferredIncomeTaxTTM": 3285000000,
+        "stockBasedCompensationTTM": 13966000000,
+        "changeInWorkingCapitalTTM": 354000000,
+        "accountsReceivablesTTM": -9913000000,
+        "inventoryTTM": 0,
+        "accountsPayablesTTM": 271000000,
+        "otherWorkingCapitalTTM": 995000000,
+        "otherNonCashItemsTTM": 335000000,
+        "netCashProvidedByOperatingActivitiesTTM": 80859000000,
+        "investmentsInPropertyPlantAndEquipmentTTM": -22323000000,
+        "acquisitionsNetTTM": -2357000000,
+        "purchasesOfInvestmentsTTM": -140350000000,
+        "salesMaturitiesOfInvestmentsTTM": 128505000000,
+        "otherInvestingActivitesTTM": -410000000,
+        "netCashUsedForInvestingActivitesTTM": -36935000000,
+        "debtRepaymentTTM": -8796000000,
+        "commonStockIssuedTTM": 0,
+        "commonStockRepurchasedTTM": -39992000000,
+        "dividendsPaidTTM": 0,
+        "otherFinancingActivitesTTM": 10467000000,
+        "netCashUsedProvidedByFinancingActivitiesTTM": -38321000000,
+        "effectOfForexChangesOnCashTTM": 285000000,
+        "netChangeInCashTTM": 5888000000,
+        "cashAtEndOfPeriodTTM": 96846000000,
+        "cashAtBeginningOfPeriodTTM": 90958000000,
+        "operatingCashFlowTTM": 80859000000,
+        "capitalExpenditureTTM": -22323000000,
+        "freeCashFlowTTM": 58536000000
+    }]
     ...
     ```
     
@@ -487,10 +593,98 @@
      'returnOnEquity': 0.18094848659141563,
      'shortTermCoverageRatios': None,
      'symbol': 'GOOG',
-     'totalDebtToCapitalization': None}
+     'totalDebtToCapitalization': None},
     ...
     ```
     
+### **historical_price**
+
+=== "Details"
+
+    - *Description*:  Retrieves historical price data
+    - *Return*:  `List[Dict]`
+
+=== "Example"
+
+    ```python
+    from quantel import Quantel
+
+    qt = Quantel(api_key="<your-quantel-api-key>")
+
+    goog = qt.ticker('goog')
+    goog.historical_price()
+    ```
+
+=== "Data"
+
+    ```python
+      [
+          {
+              "symbol": "GOOG",
+              "historical": [
+                  {
+                      "high": 2884.84,
+                      "vwap": 2845.37,
+                      "close": 2829.27,
+                      "date": "2021-09-17",
+                      "change": -46.7,
+                      "open": 2875.97,
+                      "changePercent": -1.624,
+                      "adjClose": 2829.27,
+                      "volume": 2603121,
+                      "low": 2822.0
+                  },
+                  {
+                      "high": 2904.0,
+                      "vwap": 2887.04333,
+                      "close": 2887.47,
+                      "date": "2021-09-16",
+                      "change": -14.95,
+                      "open": 2902.42,
+                      "changePercent": -0.515,
+                      "adjClose": 2887.47,
+                      "volume": 1025063,
+                      "low": 2869.66
+                  },
+                  {
+                      "high": 2911.63,
+                      "vwap": 2887.04,
+                      "close": 2904.12,
+                      "date": "2021-09-15",
+                      "change": 28.94,
+                      "open": 2875.18,
+                      "changePercent": 1.007,
+                      "adjClose": 2904.12,
+                      "volume": 1029778,
+                      "low": 2845.37
+                  },
+                  {
+                      "high": 2894.55,
+                      "vwap": 2873.59333,
+                      "close": 2868.12,
+                      "date": "2021-09-14",
+                      "change": -15.1,
+                      "open": 2883.22,
+                      "changePercent": -0.524,
+                      "adjClose": 2868.12,
+                      "volume": 936922,
+                      "low": 2858.11
+                  },
+                  {
+                      "high": 2883.0,
+                      "vwap": 2865.98333,
+                      "close": 2869.3,
+                      "date": "2021-09-13",
+                      "change": 5.28,
+                      "open": 2864.02,
+                      "changePercent": 0.184,
+                      "adjClose": 2869.3,
+                      "volume": 1009836,
+                      "low": 2845.65
+                  },
+    ...
+    ```
+
 ### **key_metrics**
 
 === "Details"

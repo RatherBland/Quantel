@@ -10,6 +10,10 @@ def test_quantel_income_statement():
     assert 'GOOG' in goog.income_statement()[0]['symbol']
 
 
+def test_quantel_income_statement_ttm():
+    assert 'GOOG' in goog.income_statement_ttm()[0]['symbol']
+
+
 def test_quantel_income_statement_growth():
     assert 'GOOG' in goog.income_statement_growth()[0]['symbol']
 
@@ -24,6 +28,10 @@ def test_quantel_balance_sheet_growth():
 
 def test_quantel_cash_flow():
     assert 'GOOG' in goog.cash_flow()[0]['symbol']
+
+
+def test_quantel_cash_flow_ttm():
+    assert 'GOOG' in goog.cash_flow_ttm()[0]['symbol']
 
 
 def test_quantel_cash_flow_growth():
@@ -67,6 +75,10 @@ def test_quantel_insider_transactions_summarized():
 
 
 def test_quantel_share_ownership():
+    assert 'GOOG' in goog.share_ownership()[0]['symbol']
+
+
+def test_quantel_historical_price():
     assert 'GOOG' in goog.share_ownership()[0]['symbol']
 
 

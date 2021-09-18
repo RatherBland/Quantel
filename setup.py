@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="quantel",
-    version="0.2",
+    version="0.3",
     author="Guy M",
     author_email="guy@quantel.io",
     description="Interact with the Quantel Finance API",
