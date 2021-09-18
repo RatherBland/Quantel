@@ -79,7 +79,7 @@ def test_quantel_share_ownership():
 
 
 def test_quantel_historical_price():
-    assert 'GOOG' in goog.share_ownership()[0]['symbol']
+    assert 'GOOG' in goog.historical_price()[0]['symbol']
 
 
 async_goog = qt.ticker('goog', asynchronous=True)
