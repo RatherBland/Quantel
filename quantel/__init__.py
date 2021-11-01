@@ -17,7 +17,7 @@ class _Ticker:
         if isinstance(symbols, str):
             symbols = symbols.split(" ")
 
-        self.symbols = list(self._chunks(symbols, 30))
+        self.symbols = list(self._chunks(symbols, 10))
 
     def _get_data(self, endpoint: str, **kwargs) -> List[Dict]:
         """
@@ -33,7 +33,7 @@ class _Ticker:
 
         headers = {
             "x-rapidapi-key": self.api_key,
-            "user-agent": "Quantel Python Library v0.1"
+            "user-agent": "Quantel Python Library"
         }
 
         if self.asynchronous:
@@ -58,7 +58,12 @@ class _Ticker:
         Dict]:
         async with session.get(f"{self.host}{endpoint}/{symbols}", params=kwargs) as response:
             if self._check_status(response.status):
-                return await response.json()
+                j_response = await response.json()
+
+                if isinstance(j_response, dict):
+                    return [j_response]
+                else:
+                    return j_response
 
     def _submit_sync(self, headers: dict, endpoint: str, **kwargs):
         tasks = []
@@ -76,8 +81,12 @@ class _Ticker:
         res = session.get(f"{self.host}{endpoint}/{symbols}", params=kwargs)
 
         if self._check_status(res.status_code):
-            print(res.json())
-            return res.json()
+            j_response = res.json()
+
+            if isinstance(j_response, dict):
+                return [j_response]
+            else:
+                return j_response
 
     def _check_status(self, status_code: int) -> bool:
         """
@@ -197,8 +206,6 @@ class _Ticker:
         Not supported.
 
         - N/A
-
-        # TODO: Add period parameter to financial statements
 
         """
         return self._get_data("balance-sheet-statement", period=period)
